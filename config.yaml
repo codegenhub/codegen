@@ -1,0 +1,29 @@
+base_path: ./generation/templates/
+assets:
+  assets: assets/settings.yaml
+  pattern: pattern/settings.yaml
+  place: place/settings.yaml
+  check: check/settings.yaml
+  furniture_type: furniture_type/settings.yaml
+  registry: registry/settings.yaml
+  style: style/settings.yaml
+  config/java: config/java/settings.yaml
+  config/php: config/php/settings.yaml
+  config/python: config/python/settings.yaml
+  config/ts: config/ts/settings.yaml
+  grpc/python-server: grpc/python-server/settings.yaml
+  grpc/php-client: grpc/php-client/settings.yaml
+# asset_in_config (code gen)
+
+
+
+
+
+
+
+
+
+
+
+
+

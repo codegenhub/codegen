@@ -1,0 +1,20 @@
+{
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "description": "Tools",
+  "keywords": [],
+  "type": "library",
+  "require": {
+    "php": ">=7.0",
+    "twig/twig": "^3.0",
+    "symfony/yaml": "^5.1",
+    "ext-json": "*",
+    "symfony/console": "^5.3",
+    "jawira/case-converter": "^3.4"
+  },
+  "autoload": {
+    "psr-4" : {
+      "Material4\\Codegen\\App\\" : "App/"
+    }
+  }
+}

@@ -1,0 +1,5 @@
+vendor
+new_files.txt
+*.orig
+generation/output
+generation/templates
