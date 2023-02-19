@@ -1,12 +1,11 @@
 <?php
 
-namespace Material4\Codegen\App\Commands;
+namespace Codegenhub\App\Commands;
 
-use Material4\Codegen\App\CodeGenerator;
-use Material4\Codegen\App\Exception\CanNotRollbackFile;
-use Material4\Codegen\App\StringInterpolator;
-use Material4\Codegen\App\Utils\SourceHelper;
-use Symfony\Component\Console\Command\Command;
+use Codegenhub\App\CodeGenerator;
+use Codegenhub\App\Exception\CanNotRollbackFile;
+use Codegenhub\App\StringInterpolator;
+use Codegenhub\App\Utils\SourceHelper;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 

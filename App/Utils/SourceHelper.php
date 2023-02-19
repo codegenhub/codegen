@@ -1,12 +1,12 @@
 <?php
 
 
-namespace Material4\Codegen\App\Utils;
+namespace Codegenhub\App\Utils;
 
-use Material4\Codegen\App\Exception\CanNotRollbackFile;
+use Codegenhub\App\Exception\CanNotRollbackFile;
 use Symfony\Component\Yaml\Yaml;
-use Material4\Codegen\App\Model\Asset;
-use Material4\Codegen\App\Model\MappingOptions;
+use Codegenhub\App\Model\Asset;
+use Codegenhub\App\Model\MappingOptions;
 
 class SourceHelper
 {

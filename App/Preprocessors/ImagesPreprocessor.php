@@ -1,8 +1,8 @@
 <?php
 
-namespace Material4\Codegen\App\Preprocessors;
+namespace Codegenhub\App\Preprocessors;
 
-use Material4\Codegen\App\PreProcessorInterface;
+use Codegenhub\App\PreProcessorInterface;
 
 class ImagesPreprocessor implements PreProcessorInterface
 {

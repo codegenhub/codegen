@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Material4\Codegen\App;
+namespace Codegenhub\App;
 
 use Jawira\CaseConverter\Convert;
 use Twig\Environment;

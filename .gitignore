@@ -3,3 +3,6 @@ new_files.txt
 *.orig
 generation/output
 generation/templates
+generation/data
+composer.phar
+test*

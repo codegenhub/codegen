@@ -1,6 +1,6 @@
 <?php
 
-namespace Material4\Codegen\App;
+namespace Codegenhub\App;
 ;
 
 interface PreProcessorInterface

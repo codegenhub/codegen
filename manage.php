@@ -2,7 +2,7 @@
 
 
 use Symfony\Component\Console\Application;
-use Material4\Codegen\App\Commands\{Generate,Live,Rollback};
+use Codegenhub\App\Commands\{Generate, Live, Rollback};
 
 require_once __DIR__ . '/vendor/autoload.php';
 

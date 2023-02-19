@@ -1,12 +1,12 @@
 <?php
 
-namespace Material4\Codegen\App\Commands;
+namespace Codegenhub\App\Commands;
 
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Yaml\Yaml;
-use Material4\Codegen\App\Model\Asset;
-use Material4\Codegen\App\Model\Config;
+use Codegenhub\App\Model\Asset;
+use Codegenhub\App\Model\Config;
 use Symfony\Component\Console\Command\Command;
 
 abstract class AssetAware extends Command

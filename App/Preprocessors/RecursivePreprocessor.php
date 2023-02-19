@@ -1,9 +1,9 @@
 <?php
 
-namespace Material4\Codegen\App\Preprocessors;
+namespace Codegenhub\App\Preprocessors;
 
 use Jawira\CaseConverter\Convert;
-use Material4\Codegen\App\PreProcessorInterface;
+use Codegenhub\App\PreProcessorInterface;
 
 class RecursivePreprocessor implements PreProcessorInterface
 {

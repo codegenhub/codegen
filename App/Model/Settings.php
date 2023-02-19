@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Material4\Codegen\App\Model;
+namespace Codegenhub\App\Model;
 
 
 class Settings

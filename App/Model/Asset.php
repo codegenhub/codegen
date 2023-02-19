@@ -1,12 +1,12 @@
 <?php
 
 
-namespace Material4\Codegen\App\Model;
+namespace Codegenhub\App\Model;
 
 
-use Material4\Codegen\App\PreProcessorInterface;
+use Codegenhub\App\PreProcessorInterface;
 use Symfony\Component\Yaml\Yaml;
-use Material4\Codegen\App\PostProcessorInterface;
+use Codegenhub\App\PostProcessorInterface;
 
 class Asset
 {

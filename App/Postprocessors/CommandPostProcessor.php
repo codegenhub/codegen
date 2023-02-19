@@ -1,9 +1,9 @@
 <?php
 
-namespace Material4\Codegen\App\Postprocessors;
+namespace Codegenhub\App\Postprocessors;
 
-use Material4\Codegen\App\PostProcessorInterface;
-use Material4\Codegen\App\StringInterpolator;
+use Codegenhub\App\PostProcessorInterface;
+use Codegenhub\App\StringInterpolator;
 
 class CommandPostProcessor implements PostProcessorInterface
 {

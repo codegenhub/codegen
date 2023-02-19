@@ -1,13 +1,13 @@
 <?php
 
 
-namespace Material4\Codegen\App;
+namespace Codegenhub\App;
 
 use Symfony\Component\Yaml\Yaml;
-use Material4\Codegen\App\Model\Asset;
-use Material4\Codegen\App\Model\MappingOptions;
-use Material4\Codegen\App\Utils\Append;
-use Material4\Codegen\App\Utils\SourceHelper;
+use Codegenhub\App\Model\Asset;
+use Codegenhub\App\Model\MappingOptions;
+use Codegenhub\App\Utils\Append;
+use Codegenhub\App\Utils\SourceHelper;
 
 class CodeGenerator
 {

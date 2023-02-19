@@ -1,15 +1,13 @@
 <?php
 
 
-namespace Material4\Codegen\App\Commands;
+namespace Codegenhub\App\Commands;
 
 
 use Exception;
-use Material4\Codegen\App\CodeGenerator;
-use Material4\Codegen\App\Model\Config;
-use Material4\Codegen\App\StringInterpolator;
-use Material4\Codegen\App\Utils\SourceHelper;
-use Symfony\Component\Console\Command\Command;
+use Codegenhub\App\CodeGenerator;
+use Codegenhub\App\StringInterpolator;
+use Codegenhub\App\Utils\SourceHelper;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Yaml\Yaml;

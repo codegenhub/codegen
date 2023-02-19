@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Material4\Codegen\App\Exception;
+namespace Codegenhub\App\Exception;
 
 class CanNotRollbackFile extends \Exception
 {

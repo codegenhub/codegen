@@ -1,6 +1,6 @@
 <?php
 
-namespace Material4\Codegen\App\Utils;
+namespace Codegenhub\App\Utils;
 
 class StringTree
 {
