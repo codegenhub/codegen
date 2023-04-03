@@ -6,3 +6,4 @@ generation/templates
 generation/data
 composer.phar
 test*
+/gpt_key.txt

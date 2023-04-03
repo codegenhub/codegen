@@ -1,4 +1,6 @@
 base_path: ./generation/templates/
+gpt:
+  secret_key_file: gpt_key.txt
 assets:
   assets: assets/settings.yaml
   pattern: pattern/settings.yaml

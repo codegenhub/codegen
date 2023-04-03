@@ -5,12 +5,15 @@
   "keywords": [],
   "type": "library",
   "require": {
-    "php": ">=8.0",
+    "php": ">=8.1",
     "twig/twig": "^3.0",
     "symfony/yaml": "^5.1",
     "ext-json": "*",
     "symfony/console": "^5.3",
-    "jawira/case-converter": "^3.4"
+    "jawira/case-converter": "^3.4",
+    "openai-php/client": "^0.4.1",
+    "symfony/http-client": "^6.2",
+    "nyholm/psr7": "^1.5"
   },
   "autoload": {
     "psr-4": {
