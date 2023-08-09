@@ -4,7 +4,7 @@
 use Symfony\Component\Console\Application;
 use Codegenhub\App\Commands\{Generate, Live, Rollback, Test};
 
-require_once __DIR__ . '/../../../vendor/autoload.php';
+require_once __DIR__ . '/../../../autoload.php';
 
 $application = new Application();
 $application->add(new Generate());

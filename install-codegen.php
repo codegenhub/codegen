@@ -31,7 +31,7 @@ if (!$composerBinDir) {
 }
 
 // Check if the codegen executable exists at the expected path
-$binaryPath = $composerBinDir . '/codegen';
+$binaryPath = $composerBinDir . '/vendor/codegenhub/codegen/manage.php';
 if (!file_exists($binaryPath)) {
     // Adjust the path based on the relative vendor directory structure
     $binaryPath = $composerBinDir . '/vendor/codegenhub/codegen/codegen';
