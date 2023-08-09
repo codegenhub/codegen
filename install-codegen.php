@@ -25,7 +25,6 @@ if (!$globalComposer) {
 }
 shell_exec($composerCommand . ' global require ' . $packageName . ' --no-plugins');
 echo "\e[32m✓\e[0m Installed $packageName\n";
-
 // Determine the path for the global Composer bin directory
 $composerBinDirOutput = shell_exec($composerCommand . ' global config bin-dir --absolute');
 $composerBinDir = $composerBinDirOutput ? rtrim($composerBinDirOutput, "\n") : '';
@@ -36,7 +35,13 @@ if (!$composerBinDir) {
 }
 
 // Check if the codegen executable exists at the expected path
-$binaryPath = $composerBinDir . '/vendor/codegenhub/codegen/manage.php'; // Updated path
+$binaryPath = $composerBinDir . '/vendor/codegenhub/codegen/manage.php'; // Default expected path
+
+// If the binary isn't found at the default path, check the local directory
+if (!file_exists($binaryPath)) {
+    $binaryPath = __DIR__ . '/vendor/codegenhub/codegen/manage.php';
+}
+
 if (!file_exists($binaryPath)) {
     echo "The codegen executable was not found at the expected paths.\n";
     exit(1);
