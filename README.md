@@ -7,19 +7,19 @@ Especially everything related to the PHP code.
 
 It's recognized as one of the best code generators in the PHP community.
 
-## Installation
+## Package installation
 
 Install the package using Composer:
 ```bash
 composer require codegenhub/codegen
 ```
 
-## Installation
+## Global installation
 
-To install `codegen`, simply run the following command:
+To install `codegen` globally, simply run the following command:
 
 ```bash
-php -r "copy('https://raw.githubusercontent.com/codegenhub/codegen/main/install-codegen.php', 'install-codegen.php');" && 
+php -r "copy('https://raw.githubusercontent.com/codegenhub/codegen/master/install-codegen.php', 'install-codegen.php');" && 
 php install-codegen.php && 
 rm install-codegen.php
 ```
