@@ -8,11 +8,14 @@ $os = strtoupper(substr(PHP_OS, 0, 3));
 
 // Check if global composer is available
 $composerCommand = 'composer';
-$whichComposer = shell_exec('which composer');
+$whichComposer = shell_exec('which composer 2>&1');
 $globalComposer = true;
 if (!$whichComposer || trim($whichComposer) == '') {
     echo "Global Composer not found. Downloading composer.phar...\n";
-    file_put_contents('composer.phar', fopen('https://getcomposer.org/composer-stable.phar', 'r'));
+    if (!@copy('https://getcomposer.org/composer-stable.phar', 'composer.phar')) {
+        echo "Failed to download composer.phar. Please ensure you have an active internet connection.\n";
+        exit(1);
+    }
     $composerCommand = 'php composer.phar';
     $globalComposer = false;
     echo "\e[32m✓\e[0m Downloaded composer.phar\n";
@@ -23,12 +26,12 @@ echo "Installing $packageName via Composer...\n";
 if (!$globalComposer) {
     chdir(getenv('HOME') . '/.composer'); // Change to global composer directory
 }
-shell_exec($composerCommand . ' global require ' . $packageName . ' --no-plugins');
+shell_exec($composerCommand . ' global require ' . $packageName . ' --no-plugins 2>&1');
 echo "\e[32m✓\e[0m Installed $packageName\n";
 
 // Determine the path for the global Composer packages
-$composerGlobalVendorDirOutput = shell_exec($composerCommand . ' global config vendor-dir --absolute');
-$composerGlobalVendorDir = $composerGlobalVendorDirOutput ? rtrim($composerGlobalVendorDirOutput, "\n") : '';
+$composerGlobalVendorDirOutput = shell_exec($composerCommand . ' global config vendor-dir --absolute 2>&1');
+$composerGlobalVendorDir = $composerGlobalVendorDirOutput ? rtrim($composerGlobalVendorDirOutput, "\\n") : '';
 
 if (!$composerGlobalVendorDir) {
     echo "Failed to determine Composer global vendor directory. Exiting.\n";
@@ -84,10 +87,20 @@ echo "\e[32m✓\e[0m Installation successful! You can now use the 'codegen' comm
 // Add ~/.local/bin to PATH for UNIX systems
 if ($os !== 'WIN') {
     $bashrcPath = getenv('HOME') . '/.bashrc';
-    $pathExport = 'export PATH="$HOME/.local/bin:$PATH"';
+    $zshrcPath = getenv('HOME') . '/.zshrc';
+    $pathExport = 'export PATH=\"$HOME/.local/bin:$PATH\"';
+    $updatedPath = false;
     if (file_exists($bashrcPath) && !strpos(file_get_contents($bashrcPath), $pathExport)) {
-        file_put_contents($bashrcPath, $pathExport . "\n", FILE_APPEND);
+        file_put_contents($bashrcPath, $pathExport . "\\n", FILE_APPEND);
         echo "Added ~/.local/bin to PATH in .bashrc\n";
+        $updatedPath = true;
     }
-    echo "Ensure that ~/.local/bin is in your PATH or restart your terminal.\n";
+    if (file_exists($zshrcPath) && !strpos(file_get_contents($zshrcPath), $pathExport)) {
+        file_put_contents($zshrcPath, $pathExport . "\\n", FILE_APPEND);
+        echo "Added ~/.local/bin to PATH in .zshrc\n";
+        $updatedPath = true;
+    }
+    if ($updatedPath) {
+        echo "Ensure that ~/.local/bin is in your PATH or restart your terminal.\n";
+    }
 }
