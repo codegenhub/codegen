@@ -19,11 +19,17 @@ echo "Installing $packageName via Composer...\n";
 shell_exec($composerCommand . ' global require ' . $packageName);
 
 // Determine the path for the global Composer bin directory
-$composerBinDir = rtrim(shell_exec($composerCommand . ' global config bin-dir --absolute'), "\n");
+$composerBinDirOutput = shell_exec($composerCommand . ' global config bin-dir --absolute');
+$composerBinDir = $composerBinDirOutput ? rtrim($composerBinDirOutput, "\n") : '';
+
+if (!$composerBinDir) {
+    echo "Failed to determine Composer bin directory. Exiting.\n";
+    exit(1);
+}
 
 // Symlink or copy the codegen binary to a directory in the user's PATH
 $binaryPath = $composerBinDir . '/codegen';
-$destPath = $os === 'WIN' ? 'C:/Windows/System32/codegen' : '/usr/local/bin/codegen';
+$destPath = $os === 'WIN' ? 'C:/Windows/System32/codegen' : getenv('HOME') . '/.local/bin/codegen';
 
 if (file_exists($destPath)) {
     echo "Removing existing codegen command...\n";
@@ -33,7 +39,7 @@ if (file_exists($destPath)) {
 if ($os !== 'WIN') {
     echo "Creating symlink to codegen...\n";
     if (!symlink($binaryPath, $destPath)) {
-        echo "Failed to create symlink. Please ensure you have the necessary permissions.\n";
+        echo "Failed to create symlink. Please ensure you have the necessary permissions or choose a different installation directory.\n";
         exit(1);
     }
     chmod($destPath, 0755);
@@ -51,3 +57,4 @@ if ($composerCommand === 'php composer.phar') {
 }
 
 echo "Installation successful! You can now use the 'codegen' command.\n";
+echo "Ensure that ~/.local/bin is in your PATH.\n";
