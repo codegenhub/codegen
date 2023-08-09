@@ -24,7 +24,7 @@ if (!$whichComposer || trim($whichComposer) == '') {
 // Install the package globally using Composer with --no-plugins flag
 echo "Installing $packageName via Composer...\n";
 if (!$globalComposer) {
-    chdir(getenv('HOME') . '/.composer'); // Change to global composer directory
+    chdir(__DIR__); // Change to current directory for local composer
 }
 shell_exec($composerCommand . ' global require ' . $packageName . ' --no-plugins 2>&1');
 echo "\e[32m✓\e[0m Installed $packageName\n";
