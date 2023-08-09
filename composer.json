@@ -1,6 +1,7 @@
 {
   "name": "codegenhub/codegen",
   "homepage": "https://github.com/codegenhub/codegen",
+  "bin": ["codegen"],
   "license": "MIT",
   "authors": [
     {
