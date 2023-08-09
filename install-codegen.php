@@ -8,15 +8,16 @@ $os = strtoupper(substr(PHP_OS, 0, 3));
 
 // Check if global composer is available
 $composerCommand = 'composer';
-if (trim(shell_exec('which composer')) == '') {
+$whichComposer = shell_exec('which composer');
+if (!$whichComposer || trim($whichComposer) == '') {
     echo "Global Composer not found. Downloading composer.phar...\n";
     file_put_contents('composer.phar', fopen('https://getcomposer.org/composer-stable.phar', 'r'));
     $composerCommand = 'php composer.phar';
 }
 
-// Install the package globally using Composer
+// Install the package globally using Composer with --no-plugins flag
 echo "Installing $packageName via Composer...\n";
-shell_exec($composerCommand . ' global require ' . $packageName);
+shell_exec($composerCommand . ' global require ' . $packageName . ' --no-plugins');
 
 // Determine the path for the global Composer bin directory
 $composerBinDirOutput = shell_exec($composerCommand . ' global config bin-dir --absolute');
@@ -27,8 +28,18 @@ if (!$composerBinDir) {
     exit(1);
 }
 
-// Symlink or copy the codegen binary to a directory in the user's PATH
+// Check if the codegen executable exists at the expected path
 $binaryPath = $composerBinDir . '/codegen';
+if (!file_exists($binaryPath)) {
+    // Adjust the path based on the relative vendor directory structure
+    $binaryPath = $composerBinDir . '/vendor/codegenhub/codegen/codegen';
+    if (!file_exists($binaryPath)) {
+        echo "The codegen executable was not found at the expected paths.\n";
+        exit(1);
+    }
+}
+
+// Symlink or copy the codegen binary to a directory in the user's PATH
 $destPath = $os === 'WIN' ? 'C:/Windows/System32/codegen' : getenv('HOME') . '/.local/bin/codegen';
 
 if (file_exists($destPath)) {
