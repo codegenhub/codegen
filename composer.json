@@ -3,6 +3,7 @@
   "homepage": "https://github.com/codegenhub/codegen",
   "bin": ["codegen"],
   "license": "MIT",
+  "version": "0.0.1",
   "authors": [
     {
       "name": "Ivan Kuznetsov",
@@ -10,7 +11,7 @@
       "role": "Author"
     }
   ],
-  "minimum-stability": "dev",
+  "minimum-stability": "stable",
   "prefer-stable": true,
   "description": "Tools",
   "keywords": ["code generation", "assets", "future"],
