@@ -9,15 +9,20 @@ $os = strtoupper(substr(PHP_OS, 0, 3));
 // Check if global composer is available
 $composerCommand = 'composer';
 $whichComposer = shell_exec('which composer');
+$globalComposer = true;
 if (!$whichComposer || trim($whichComposer) == '') {
     echo "Global Composer not found. Downloading composer.phar...\n";
     file_put_contents('composer.phar', fopen('https://getcomposer.org/composer-stable.phar', 'r'));
     $composerCommand = 'php composer.phar';
+    $globalComposer = false;
     echo "\e[32m✓\e[0m Downloaded composer.phar\n";
 }
 
 // Install the package globally using Composer with --no-plugins flag
 echo "Installing $packageName via Composer...\n";
+if (!$globalComposer) {
+    chdir(getenv('HOME') . '/.composer'); // Change to global composer directory
+}
 shell_exec($composerCommand . ' global require ' . $packageName . ' --no-plugins');
 echo "\e[32m✓\e[0m Installed $packageName\n";
 
@@ -31,14 +36,10 @@ if (!$composerBinDir) {
 }
 
 // Check if the codegen executable exists at the expected path
-$binaryPath = $composerBinDir . '/vendor/codegenhub/codegen/manage.php';
+$binaryPath = $composerBinDir . '/vendor/codegenhub/codegen/manage.php'; // Updated path
 if (!file_exists($binaryPath)) {
-    // Adjust the path based on the relative vendor directory structure
-    $binaryPath = $composerBinDir . '/vendor/codegenhub/codegen/codegen';
-    if (!file_exists($binaryPath)) {
-        echo "The codegen executable was not found at the expected paths.\n";
-        exit(1);
-    }
+    echo "The codegen executable was not found at the expected paths.\n";
+    exit(1);
 }
 
 // Symlink or copy the codegen binary to a directory in the user's PATH
@@ -72,10 +73,20 @@ if ($os !== 'WIN') {
 }
 
 // Remove local composer.phar if it was downloaded
-if ($composerCommand === 'php composer.phar') {
+if (!$globalComposer) {
     unlink('composer.phar');
     echo "\e[32m✓\e[0m Removed local composer.phar\n";
 }
 
 echo "\e[32m✓\e[0m Installation successful! You can now use the 'codegen' command.\n";
-echo "Ensure that ~/.local/bin is in your PATH.\n";
+
+// Add ~/.local/bin to PATH for UNIX systems
+if ($os !== 'WIN') {
+    $bashrcPath = getenv('HOME') . '/.bashrc';
+    $pathExport = 'export PATH="$HOME/.local/bin:$PATH"';
+    if (file_exists($bashrcPath) && !strpos(file_get_contents($bashrcPath), $pathExport)) {
+        file_put_contents($bashrcPath, $pathExport . "\n", FILE_APPEND);
+        echo "Added ~/.local/bin to PATH in .bashrc\n";
+    }
+    echo "Ensure that ~/.local/bin is in your PATH or restart your terminal.\n";
+}
